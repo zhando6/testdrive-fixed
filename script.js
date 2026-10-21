@@ -102,6 +102,9 @@
             var isValid = true;
             var errorMessages = [];
 
+            // Name pattern: letters, spaces, hyphens, apostrophes (no digits or symbols)
+            var nameRegex = /^[A-Za-zА-Яа-яЁё\s\-']+$/;
+
             // Last Name Validation
             if (!lastName) {
                 $('#form_last_name').addClass('is-invalid');
@@ -112,6 +115,11 @@
                 $('#form_last_name').addClass('is-invalid');
                 $('#error_last_name').text('Last name must be at least 2 characters.');
                 isValid = false;
+            } else if (!nameRegex.test(lastName)) {
+                $('#form_last_name').addClass('is-invalid');
+                $('#error_last_name').text('Last name must contain letters only (no numbers or special characters).');
+                isValid = false;
+                errorMessages.push('Last name must contain letters only.');
             }
 
             // First Name Validation
@@ -124,6 +132,18 @@
                 $('#form_first_name').addClass('is-invalid');
                 $('#error_first_name').text('First name must be at least 2 characters.');
                 isValid = false;
+            } else if (!nameRegex.test(firstName)) {
+                $('#form_first_name').addClass('is-invalid');
+                $('#error_first_name').text('First name must contain letters only (no numbers or special characters).');
+                isValid = false;
+                errorMessages.push('First name must contain letters only.');
+            }
+
+            // Middle Name Validation (if provided)
+            if (middleName && !nameRegex.test(middleName)) {
+                $('#form_middle_name').addClass('is-invalid');
+                isValid = false;
+                errorMessages.push('Middle name must contain letters only.');
             }
 
             // Age Validation (18 to 99)
@@ -193,8 +213,8 @@
             $('#step_5').fadeIn(350);
         });
 
-        // STEP 5 -> RESTART BOOKING
-        $('#restart_booking').on('click', function () {
+        // STEP 5 -> RESTART BOOKING & HOME
+        function resetWizard() {
             // Reset state
             counter = 0;
             showSlide(counter);
@@ -207,6 +227,9 @@
             $('#title').html('<span class="number">1</span> Choose the model');
             $('#step_5').fadeOut(0);
             $('#step_1').fadeIn(350);
-        });
+        }
+
+        $('#restart_booking').on('click', resetWizard);
+        $('#go_to_home').on('click', resetWizard);
     });
 }(jQuery));
