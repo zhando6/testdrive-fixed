@@ -119,31 +119,52 @@ body {
 
 /* Slider Controls */
 .slider-btn {
-	width: 38px;
-	height: 50px;
+	width: 44px;
+	height: 56px;
 	position: absolute;
-	top: calc(50% - 25px);
-	background: rgba(0, 0, 0, 0.6) url(img/slider2_arrow.png) no-repeat;
-	border: 1px solid rgba(255, 255, 255, 0.2);
-	border-radius: 4px;
+	top: calc(50% - 28px);
+	background: rgba(0, 0, 0, 0.55);
+	border: 1px solid rgba(255, 255, 255, 0.22);
+	border-radius: 5px;
 	cursor: pointer;
-	transition: background-color 0.2s, border-color 0.2s;
+	transition: background 0.2s, border-color 0.2s;
 	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
 }
 
 .slider-btn:hover {
-	background-color: rgba(255, 255, 255, 0.15);
+	background: rgba(255, 255, 255, 0.18);
 	border-color: #ffffff;
+}
+
+/* Arrow chevron via pseudo-element — no image dependency */
+.slider-btn::after {
+	content: "";
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-top: 2.5px solid #ffffff;
+	border-right: 2.5px solid #ffffff;
+	border-radius: 1px;
 }
 
 .slider-btn.prev {
 	left: 12px;
-	background-position: 10px 12px;
+}
+
+.slider-btn.prev::after {
+	transform: rotate(-135deg) translate(-2px, 2px);
 }
 
 .slider-btn.next {
 	right: 12px;
-	background-position: -6px 12px;
+}
+
+.slider-btn.next::after {
+	transform: rotate(45deg) translate(-2px, 2px);
 }
 
 /* Action Buttons Bar */
