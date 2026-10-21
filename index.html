@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Book a Test Drive | Mercedes-Benz Official Dealership</title>
+	<meta name="robots" content="index, follow">
+	<meta name="keywords" content="Mercedes-Benz, Test Drive, S500 Cabriolet, GLE 400, GLC 250D, CLA, Luxury Cars" />
+	<meta name="description" content="Experience the luxury of Mercedes-Benz. Register for an official test drive in 4 simple steps." />
+	<link href="style.css" rel="stylesheet">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+	<header class="header-banner">
+		<img src="img/mb-logo.jpg" alt="Mercedes-Benz Dealership Logo" class="logo">
+	</header>
+		
+	<main class="content">
+		<h1 class="headline" id="title">
+			<span class="number">1</span> Choose the model
+		</h1>
+
+		<!-- STEP 1: CAR MODEL SELECTION -->
+		<section id="step_1" class="wizard-step">
+			<div class="model-select slider_wrap" id="slider" aria-label="Vehicle Model Selector">
+				<div class="slide-item active">
+					<img src="img/1493300397-Mercedes-S500-Cabriolet-AMG.png" alt="Mercedes-Benz S500 Cabriolet AMG">
+					<div class="car-title">S500 Cabriolet AMG</div>
+				</div>
+				<div class="slide-item" style="display: none;">
+					<img src="img/mercedes-2015-cayenne-400.png" alt="Mercedes-Benz GLE 400 AMG">
+					<div class="car-title">GLE 400 AMG</div>
+				</div>
+				<div class="slide-item" style="display: none;">
+					<img src="img/1486985670-Large-Mercedes-GLC-250d-4MATIC-AMGline-auto.png" alt="Mercedes-Benz GLC 250D 4MATIC">
+					<div class="car-title">GLC 250D 4MATIC</div>
+				</div>
+				<div class="slide-item" style="display: none;">
+					<img src="img/cla_sb_standard-cirrushvid.png" alt="Mercedes-Benz CLA SB Standard">
+					<div class="car-title">CLA SB Standard</div>
+				</div>
+				<button type="button" class="slider-btn prev" id="slider_prev" aria-label="Previous Car"></button>
+				<button type="button" class="slider-btn next" id="slider_next" aria-label="Next Car"></button>
+			</div>
+
+			<div class="actions-bar">
+				<button type="button" class="btn-primary" id="go_to_step_2">Continue</button>
+			</div>
+		</section>
+
+		<!-- STEP 2: TECHNICAL SPECIFICATIONS -->
+		<section id="step_2" class="wizard-step" style="display: none;">
+			<div class="form-container">
+				<div class="form-group-inline">
+					<label for="engine" class="form-label">Engine Specification <span class="required">*</span></label>
+					<select id="engine" name="engine" class="form-select" required>
+						<!-- Dynamically populated based on car -->
+					</select>
+				</div>
+
+				<div class="form-group-inline">
+					<label for="transmission" class="form-label">Transmission <span class="required">*</span></label>
+					<select id="transmission" name="transmission" class="form-select" required>
+						<!-- Dynamically populated based on car -->
+					</select>
+				</div>
+			</div>
+
+			<div class="actions-bar">
+				<button type="button" class="btn-secondary" id="back_to_step_1">Back</button>
+				<button type="button" class="btn-primary" id="go_to_step_3">Continue</button>
+			</div>
+		</section>
+
+		<!-- STEP 3: CONTACT INFORMATION FORM -->
+		<section id="step_3" class="wizard-step" style="display: none;">
+			<form id="contact_form" class="form-container" onsubmit="return false;" novalidate>
+				<div id="validation_alert" class="alert-box" style="display: none;"></div>
+
+				<div class="form-group">
+					<label for="form_last_name" class="form-label">Last name <span class="required">*</span></label>
+					<input type="text" id="form_last_name" name="last_name" class="form-input" placeholder="e.g. Anderson" maxlength="50" required>
+					<span class="field-error" id="error_last_name"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="form_first_name" class="form-label">First name <span class="required">*</span></label>
+					<input type="text" id="form_first_name" name="first_name" class="form-input" placeholder="e.g. John" maxlength="50" required>
+					<span class="field-error" id="error_first_name"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="form_middle_name" class="form-label">Middle name (Optional)</label>
+					<input type="text" id="form_middle_name" name="middle_name" class="form-input" placeholder="e.g. Robert" maxlength="50">
+				</div>
+
+				<div class="form-group">
+					<label for="form_age" class="form-label">Age (Must be 18 to 99) <span class="required">*</span></label>
+					<input type="number" id="form_age" name="age" class="form-input" placeholder="e.g. 28" min="18" max="99" required>
+					<span class="field-error" id="error_age"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="form_phone" class="form-label">Phone number <span class="required">*</span></label>
+					<input type="tel" id="form_phone" name="phone" class="form-input" value="+375" placeholder="+375 29 123 45 67" required>
+					<span class="field-error" id="error_phone"></span>
+				</div>
+
+				<div class="actions-bar">
+					<button type="button" class="btn-secondary" id="back_to_step_2">Back</button>
+					<button type="submit" class="btn-primary" id="go_to_step_4">Continue</button>
+				</div>
+			</form>
+		</section>
+
+		<!-- STEP 4: DATA CONFIRMATION -->
+		<section id="step_4" class="wizard-step" style="display: none;">
+			<div class="summary-container">
+				<p class="summary-intro">Please verify your test drive booking information:</p>
+				
+				<div class="summary-card">
+					<div class="summary-row">
+						<span class="summary-label">Selected Car Model:</span>
+						<span class="summary-value" id="step_4_car"></span>
+					</div>
+					<div class="summary-row">
+						<span class="summary-label">Desired Configuration:</span>
+						<span class="summary-value" id="step_4_equipment"></span>
+					</div>
+					<div class="summary-row">
+						<span class="summary-label">Driver Full Name:</span>
+						<span class="summary-value" id="step_4_name"></span>
+					</div>
+					<div class="summary-row">
+						<span class="summary-label">Driver Age:</span>
+						<span class="summary-value" id="step_4_age"></span> years old
+					</div>
+					<div class="summary-row">
+						<span class="summary-label">Contact Phone:</span>
+						<span class="summary-value" id="step_4_phone"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="actions-bar">
+				<button type="button" class="btn-secondary" id="back_to_step_3">Back</button>
+				<button type="button" class="btn-primary" id="finish">Confirm Booking</button>
+			</div>
+		</section>
+
+		<!-- STEP 5: BOOKING SUCCESS -->
+		<section id="step_5" class="wizard-step" style="display: none;">
+			<div class="success-container">
+				<div class="success-icon">&#10004;</div>
+				<h2>Booking Request Received!</h2>
+				<p>Thank you for booking a test drive with Mercedes-Benz.</p>
+				<p class="lead-note">Our dealership managers will contact you within the next 12 hours to confirm your appointment schedule.</p>
+				
+				<div class="actions-bar" style="margin-top: 30px;">
+					<button type="button" class="btn-primary" id="restart_booking">Book Another Test Drive</button>
+				</div>
+			</div>
+		</section>
+	</main>
+</div>
+
+</body>
+</html>
